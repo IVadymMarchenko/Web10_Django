@@ -8,7 +8,7 @@
         {{ form.non_field_errors }}
     </div>
     {% endif %}
-    <form method="post" action="{% url 'user:Registration'%}" >
+    <form method="post" action="{% url 'user:Registration'%}">
         {% csrf_token %}
         <input type="hidden" name="csrf_token" value="eoKPuBICAzHXfMrYnkgUNbaZcFlOTpxymdSjQtvVLhWRDEqJsGwi">
         <div class="row">
@@ -17,19 +17,26 @@
 
             </div>
         </div>
+        <div>
+            <label> Email:
+                {{ form.email }}
+            </label>
+            <span>{{ form.errors.email }}</span>
+        </div>
         <div class="row">
             <div class="form-group col-xs-3">
                 <label for="password1">Enter password{{form.password1}}</label>
 
             </div>
         </div>
-            <div class="row">
-                <div class="form-group col-xs-3">
-                    <label for="password2">Repeat password{{form.password2}}</label>
+        <div class="row">
+            <div class="form-group col-xs-3">
+                <label for="password2">Repeat password{{form.password2}}</label>
 
-                </div>
             </div>
-             <button type="submit" class="btn btn-primary" style="margin-top: 3px;">Register</button>
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top: 3px;">Register</button>
+
 
     </form>
 
