@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -76,22 +78,23 @@ WSGI_APPLICATION = 'app_homework.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': '567234',
+        'NAME': os.getenv('PG_DB'),
+        'USER': os.getenv('PG_USER'),
+        'PASSWORD': os.getenv('PG_PASSWORD'),
         'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'PORT': os.getenv('PG_PORT'),
     }
 }
 
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.meta.ua'
-EMAIL_PORT = 465
-EMAIL_STARTTLS = False  # Установите False для SSL-соединения
+EMAIL_PORT = os.getenv('MAIL_PORT')
+EMAIL_STARTTLS = False
 EMAIL_USE_SSL = True
-EMAIL_USE_TLS = False  # Не требуется с EMAIL_USE_SSL
-EMAIL_HOST_USER = 'example@meta.ua'
-EMAIL_HOST_PASSWORD = 'secretPassword'
+EMAIL_USE_TLS = False
+EMAIL_HOST_USER = os.getenv('MAIL_USERNAME')
+EMAIL_HOST_PASSWORD = os.getenv('MAIL_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
